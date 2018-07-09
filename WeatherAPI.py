@@ -17,16 +17,20 @@ def main():
     json_coord_lon = str(json_data['coord']['lon'])  # LOCATION LONGITUDE FROM 1st API
     json_coord_lat = str(json_data['coord']['lat'])  # LOCATION LATITUDE FROM 1st API
 
-    # print("Latitude: " + json_coord_lat)
-    # print("Longitude: " + json_coord_lon)
+    # print("║ Latitude: " + json_coord_lat)
+    # print("║ Longitude: " + json_coord_lon)
 
     timestamp_url = "http://api.geonames.org/timezoneJSON?lat="  # 1st PART OF THE API URL
     timestamp_url_u = "&username=afc123sam"  # 2nd PART OF THE API URL
     url3 = str(timestamp_url + json_coord_lat + "&lng=" + json_coord_lon + timestamp_url_u)  # URL BUILDER
     json_data3 = requests.get(url3).json()  # CALLS THE API
 
-    json_country = (json_data3['countryName'])  # FINDS COUNTRY NAME OUT OF JSON LIST
-    print('║        Location ║ ' + json_name + ", " + json_country)  # PRINTS LOCATION NAME AND COUNTRY
+    url_location = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + json_coord_lat + "&lon=" + json_coord_lon + "&zoom=18&addressdetails=1" # URL BUILDER
+    json_data4 = requests.get(url_location).json()  # CALLS THE API
+
+    city = (json_data4["address"]["state"])          # FINDS THE CITY FROM THE JSON
+    country = (json_data4["address"]["country"])
+    print('║        Location ║ ' + json_name + ", " + city + ", " + country)  # PRINTS LOCATION NAME AND COUNTRY
     json_local_time = (json_data3['time'])  # FINDS TIME OUT OF JSON LIST
     print("║ Local Date/Time ║ " + json_local_time)  # PRINTS TIME
 
