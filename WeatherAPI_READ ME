@@ -1,1 +1,10 @@
+APIs Found Here:
 
+UV AND BASIC WEATHER INFORMATION
+https://openweathermap.org/api
+
+TIMEZONE, SUNRISE AND SUNSET INFORMATION
+http://www.geonames.org/export/web-services.html#timezone
+
+LOCATION INFORMATION
+https://nominatim.openstreetmap.org/
